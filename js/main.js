@@ -50,4 +50,18 @@ const observer = new IntersectionObserver(entries => {
   threshold: 0.3
 });
 
-document.querySelectorAll('.observer').forEach(el => observer.observe(el));
+document.addEventListener("DOMContentLoaded", function () {
+  const navbarCollapse = document.getElementById("colapsar");
+  const navLinks = document.querySelectorAll(".nav-link");
+
+  navLinks.forEach(link => {
+    link.addEventListener("click", () => {
+      if (window.innerWidth < 992) {
+        const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse);
+        if (bsCollapse) {
+          bsCollapse.hide(); // esto activa la animación interna de Bootstrap
+        }
+      }
+    });
+  });
+});
